@@ -45,3 +45,11 @@ extension ConferenceDetails {
     return attendees?.contains(where: { $0.id == attendeeID }) ?? false
   }
 }
+
+extension AttendeeDetails {
+  
+  var numberOfConferencesAttending: Int {
+    return conferencesMeta.count
+  }
+  
+}

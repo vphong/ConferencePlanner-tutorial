@@ -60,6 +60,9 @@ class ConferencesTableViewController: UITableViewController {
 
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let conferenceDetailViewController = segue.destination as! ConferenceDetailViewController
+    conferenceDetailViewController.conference = conferences[tableView.indexPathForSelectedRow!.row]
+
   }
 }
 

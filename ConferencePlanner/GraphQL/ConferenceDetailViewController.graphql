@@ -1,0 +1,24 @@
+# look for conference by id
+query ConferenceDetails($id: ID!) {
+  conference: Conference(id: $id) {
+    ...ConferenceDetails
+  }
+}
+
+# get attendees for conference
+query AttendeesForConference($conferenceId: ID!) {
+  conference: Conference(id: $conferenceId) {
+    id
+    attendees {
+      ...AttendeeDetails
+    }
+  }
+}
+
+fragment AttendeeDetails on Attendee {
+  id
+  name
+  _conferencesMeta {
+    count
+  }
+}

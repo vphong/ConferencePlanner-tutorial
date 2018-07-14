@@ -20,6 +20,7 @@
 		CA8A33AB20FA3C910023F359 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8A33AA20FA3C910023F359 /* schema.json */; };
 		CA9EDED820FAC0E3004ED45B /* ConferenceTableViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */; };
 		CA9EDEDA20FAC1C1004ED45B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EDED920FAC1C1004ED45B /* API.swift */; };
+		CA9EDEDC20FAC450004ED45B /* ConferenceDetailViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CA9EDEDB20FAC450004ED45B /* ConferenceDetailViewController.graphql */; };
 		CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		CA8A33AA20FA3C910023F359 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConferenceTableViewController.graphql; sourceTree = "<group>"; };
 		CA9EDED920FAC1C1004ED45B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		CA9EDEDB20FAC450004ED45B /* ConferenceDetailViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConferenceDetailViewController.graphql; sourceTree = "<group>"; };
 		CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RegisterViewController.graphql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 			children = (
 				CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */,
 				CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */,
+				CA9EDEDB20FAC450004ED45B /* ConferenceDetailViewController.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				558897361E83CB1900A5E05E /* LaunchScreen.storyboard in Resources */,
 				CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */,
 				CA9EDED820FAC0E3004ED45B /* ConferenceTableViewController.graphql in Resources */,
+				CA9EDEDC20FAC450004ED45B /* ConferenceDetailViewController.graphql in Resources */,
 				558897331E83CB1900A5E05E /* Assets.xcassets in Resources */,
 				558897311E83CB1900A5E05E /* Main.storyboard in Resources */,
 			);

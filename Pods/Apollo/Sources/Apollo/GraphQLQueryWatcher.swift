@@ -1,3 +1,5 @@
+import Dispatch
+
 /// A `GraphQLQueryWatcher` is responsible for watching the store, and calling the result handler with a new result whenever any of the data the previous result depends on changes.
 public final class GraphQLQueryWatcher<Query: GraphQLQuery>: Cancellable, ApolloStoreSubscriber {
   weak var client: ApolloClient?
@@ -41,10 +43,10 @@ public final class GraphQLQueryWatcher<Query: GraphQLQuery>: Cancellable, Apollo
   func store(_ store: ApolloStore, didChangeKeys changedKeys: Set<CacheKey>, context: UnsafeMutableRawPointer?) {
     if context == &self.context { return }
     
-    if let dependentKeys = dependentKeys, dependentKeys.isDisjoint(with: changedKeys) {
-      return
-    }
+    guard let dependentKeys = dependentKeys else { return }
     
-    fetch(cachePolicy: .returnCacheDataElseFetch)
+    if !dependentKeys.isDisjoint(with: changedKeys) {
+      fetch(cachePolicy: .returnCacheDataElseFetch)
+    }
   }
 }

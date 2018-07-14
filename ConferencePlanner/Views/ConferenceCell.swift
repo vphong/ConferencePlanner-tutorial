@@ -32,6 +32,16 @@ import UIKit
 
 class ConferenceCell: UITableViewCell {
 
+  var conference: ConferenceDetails! {
+    didSet {
+      nameLabel.text = "\(conference.name) \(conference.year)"
+      let attendeeCount = conference.numberOfAttendees
+      infoLabel.text =
+      "\(conference.city) (\(attendeeCount) \(attendeeCount == 1 ? "attendee" : "attendees"))"
+    }
+  }
+  
+  
   // MARK: - IBOutlets
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var infoLabel: UILabel!

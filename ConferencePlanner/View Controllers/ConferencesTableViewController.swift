@@ -33,6 +33,12 @@ import Apollo
 
 class ConferencesTableViewController: UITableViewController {
 
+  var conferences: [ConferenceDetails] = [] {
+    didSet {
+      tableView.reloadData()
+    }
+  }
+  
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,6 +48,14 @@ class ConferencesTableViewController: UITableViewController {
     // create cutom back button
     let backButton = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(goBack))
     navigationItem.leftBarButtonItem = backButton
+    
+    
+    // create query and display results
+    let allConferencesQuery = AllConferencesQuery()
+    apollo.fetch(query: allConferencesQuery) { [weak self] result, error in
+      guard let conferences = result?.data?.allConferences else { return }
+      self?.conferences = conferences.map { $0.fragments.conferenceDetails }
+    }
   }
 
   // MARK: - Navigation
@@ -61,11 +75,15 @@ extension ConferencesTableViewController {
 extension ConferencesTableViewController {
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return conferences.count
   }
-
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  
+  override func tableView(_ tableView: UITableView,
+                          cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ConferenceCell") as! ConferenceCell
+    let conference = conferences[indexPath.row]
+    cell.conference = conference
+    cell.isCurrentUserAttending = conference.isAttendedBy(currentUserID!)
     return cell
   }
 }

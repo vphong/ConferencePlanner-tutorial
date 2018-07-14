@@ -18,8 +18,9 @@
 		558897551E83CCF500A5E05E /* ConferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588974A1E83CCF500A5E05E /* ConferenceCell.swift */; };
 		76430C2C0C84A92C429E8924 /* Pods_ConferencePlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC194882296267454E99B12 /* Pods_ConferencePlanner.framework */; };
 		CA8A33AB20FA3C910023F359 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8A33AA20FA3C910023F359 /* schema.json */; };
+		CA9EDED820FAC0E3004ED45B /* ConferenceTableViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */; };
+		CA9EDEDA20FAC1C1004ED45B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9EDED920FAC1C1004ED45B /* API.swift */; };
 		CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */; };
-		CAEDE60920FAA5C9006A8DFE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDE60820FAA5C9006A8DFE /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,9 @@
 		9EC194882296267454E99B12 /* Pods_ConferencePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConferencePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FA8169A0EF4D8C4F1FF8EB /* Pods-ConferencePlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConferencePlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConferencePlanner/Pods-ConferencePlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		CA8A33AA20FA3C910023F359 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ConferenceTableViewController.graphql; sourceTree = "<group>"; };
+		CA9EDED920FAC1C1004ED45B /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RegisterViewController.graphql; sourceTree = "<group>"; };
-		CAEDE60820FAA5C9006A8DFE /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		5588972A1E83CB1900A5E05E /* ConferencePlanner */ = {
 			isa = PBXGroup;
 			children = (
+				CA9EDED920FAC1C1004ED45B /* API.swift */,
 				CA8A33AA20FA3C910023F359 /* schema.json */,
 				5588972B1E83CB1900A5E05E /* AppDelegate.swift */,
 				5588973E1E83CCF500A5E05E /* GraphQL */,
@@ -102,8 +105,8 @@
 		5588973E1E83CCF500A5E05E /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				CAEDE60820FAA5C9006A8DFE /* API.swift */,
 				CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */,
+				CA9EDED720FAC0E3004ED45B /* ConferenceTableViewController.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				CA8A33AB20FA3C910023F359 /* schema.json in Resources */,
 				558897361E83CB1900A5E05E /* LaunchScreen.storyboard in Resources */,
 				CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */,
+				CA9EDED820FAC0E3004ED45B /* ConferenceTableViewController.graphql in Resources */,
 				558897331E83CB1900A5E05E /* Assets.xcassets in Resources */,
 				558897311E83CB1900A5E05E /* Main.storyboard in Resources */,
 			);
@@ -288,7 +292,7 @@
 				5588972C1E83CB1900A5E05E /* AppDelegate.swift in Sources */,
 				558897501E83CCF500A5E05E /* Utils.swift in Sources */,
 				558897551E83CCF500A5E05E /* ConferenceCell.swift in Sources */,
-				CAEDE60920FAA5C9006A8DFE /* API.swift in Sources */,
+				CA9EDEDA20FAC1C1004ED45B /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

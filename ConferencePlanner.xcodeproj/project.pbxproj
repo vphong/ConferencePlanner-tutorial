@@ -17,6 +17,8 @@
 		558897541E83CCF500A5E05E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558897481E83CCF500A5E05E /* RegisterViewController.swift */; };
 		558897551E83CCF500A5E05E /* ConferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588974A1E83CCF500A5E05E /* ConferenceCell.swift */; };
 		76430C2C0C84A92C429E8924 /* Pods_ConferencePlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EC194882296267454E99B12 /* Pods_ConferencePlanner.framework */; };
+		CA8A33AB20FA3C910023F359 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8A33AA20FA3C910023F359 /* schema.json */; };
+		CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5588974A1E83CCF500A5E05E /* ConferenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceCell.swift; sourceTree = "<group>"; };
 		9EC194882296267454E99B12 /* Pods_ConferencePlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConferencePlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FA8169A0EF4D8C4F1FF8EB /* Pods-ConferencePlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConferencePlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConferencePlanner/Pods-ConferencePlanner.debug.xcconfig"; sourceTree = "<group>"; };
+		CA8A33AA20FA3C910023F359 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = RegisterViewController.graphql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 		5588972A1E83CB1900A5E05E /* ConferencePlanner */ = {
 			isa = PBXGroup;
 			children = (
+				CA8A33AA20FA3C910023F359 /* schema.json */,
 				5588972B1E83CB1900A5E05E /* AppDelegate.swift */,
 				5588973E1E83CCF500A5E05E /* GraphQL */,
 				558897441E83CCF500A5E05E /* View Controllers */,
@@ -95,6 +100,7 @@
 		5588973E1E83CCF500A5E05E /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				CAEDE60620FAA4B0006A8DFE /* RegisterViewController.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 			buildConfigurationList = 5588973A1E83CB1900A5E05E /* Build configuration list for PBXNativeTarget "ConferencePlanner" */;
 			buildPhases = (
 				FA3FC19229DBD5DCD3CB0DBF /* [CP] Check Pods Manifest.lock */,
+				CA8A33A920FA3BE60023F359 /* Generate Apollo GraphQL API */,
 				558897241E83CB1900A5E05E /* Sources */,
 				558897251E83CB1900A5E05E /* Frameworks */,
 				558897261E83CB1900A5E05E /* Resources */,
@@ -156,11 +163,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Nikolas Burk";
 				TargetAttributes = {
 					558897271E83CB1900A5E05E = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -188,7 +196,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA8A33AB20FA3C910023F359 /* schema.json in Resources */,
 				558897361E83CB1900A5E05E /* LaunchScreen.storyboard in Resources */,
+				CAEDE60720FAA4B0006A8DFE /* RegisterViewController.graphql in Resources */,
 				558897331E83CB1900A5E05E /* Assets.xcassets in Resources */,
 				558897311E83CB1900A5E05E /* Main.storyboard in Resources */,
 			);
@@ -229,6 +239,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConferencePlanner/Pods-ConferencePlanner-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CA8A33A920FA3BE60023F359 /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\necho \"${SRCROOT}/${TARGET_NAME}\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate '**/*.graphql' --schema schema.json --output API.swift\n";
 		};
 		FA3FC19229DBD5DCD3CB0DBF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -295,15 +319,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -345,15 +377,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;

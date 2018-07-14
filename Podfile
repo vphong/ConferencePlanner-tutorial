@@ -6,6 +6,6 @@ target 'ConferencePlanner' do
   use_frameworks!
 
   # Pods for ConferencePlanner
-  pod 'Apollo', '~> 0.7.0'
+  pod 'Apollo'
 
 end

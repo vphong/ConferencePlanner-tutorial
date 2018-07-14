@@ -1,6 +1,6 @@
 #GraphQL & Apollo on iOS
 
-Following **[raywenderlich.com's tutorial](https://www.raywenderlich.com/158433/getting-started-graphql-apollo-ios)**. 
+Following **[raywenderlich.com - Getting started with GraphQL & Apollo on iOS](https://www.raywenderlich.com/158433/getting-started-graphql-apollo-ios)**. Other resources used (due to outdated instructions, etc.): [graphcool - iOS & Apollo Quickstart](https://www.graph.cool/docs/quickstart/frontend/ios/apollo-nohcao8loo)
 
 * sets up GraphQL server
 * interact with it from iOS app using [Apollo iOS](https://github.com/apollographql/apollo-ios)

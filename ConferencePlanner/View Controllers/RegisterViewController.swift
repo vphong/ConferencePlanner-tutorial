@@ -60,7 +60,7 @@ extension RegisterViewController {
 
   @IBAction func saveButtonPressed() {
     guard let name = nameTextField.text,
-      name.characters.count > 0 else {
+      name.count > 0 else {
         print("Please provide valid username")
         return
     }
@@ -79,6 +79,36 @@ extension RegisterViewController {
 
   func createAttendee(name: String) {
     activityIndicator.startAnimating()
+    
+    
+    // TODO
+    /*** Design pattern for all API calls:
+     * 1. instantiate a query or mutation,
+     * 2. pass it to the ApolloClient,
+     * 3. make use of the results in a callback.
+     */
+    // 1. Instantiate the mutation with the user provided string.
+    let createAttendeeMutation = CreateAttendeeMutation(name: name)
+    
+    
+    // 2. Use the apollo instance to send the mutation to the API.
+    apollo.perform(mutation: createAttendeeMutation) { [weak self] result, error in
+      self?.activityIndicator.stopAnimating()
+      
+      if let error = error {
+        print(error.localizedDescription)
+        return
+      }
+      
+      
+      // 3. Retrieve the data returned by the server and store it globally as information about the current user.
+      currentUserID = result?.data?.createAttendee?.id
+      currentUserName = result?.data?.createAttendee?.name
+      
+      
+      self?.performSegue(withIdentifier: "ShowConferencesAnimated", sender: nil)
+      
+    }
     
   }
   

@@ -50,6 +50,10 @@ class ConferenceDetailViewController: UIViewController {
     return conference?.isAttendedBy(currentUserID!) ?? false
   }
   
+  // GraphQLQueryWatcher: observe changes occurring through mutations.
+  var conferenceWatcher: GraphQLQueryWatcher<ConferenceDetailsQuery>?
+  var attendeesWatcher: GraphQLQueryWatcher<AttendeesForConferenceQuery>?
+  
   // MARK: - IBOutlets
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var infoLabel: UILabel!
@@ -64,23 +68,32 @@ class ConferenceDetailViewController: UIViewController {
     title = "Details"
     
     let conferenceDetailsQuery = ConferenceDetailsQuery(id: conference.id)
-    apollo.fetch(query: conferenceDetailsQuery) { result, error in
-      guard let conference = result?.data?.conference else { return }
-      self.conference = conference.fragments.conferenceDetails
+    conferenceWatcher = apollo.watch(query: conferenceDetailsQuery) { [weak self] result, error in      guard let conference = result?.data?.conference else { return }
+      self?.conference = conference.fragments.conferenceDetails
     }
     
     let attendeesForConferenceQuery = AttendeesForConferenceQuery(conferenceId: conference.id)
-    apollo.fetch(query: attendeesForConferenceQuery) { result, error in
+    attendeesWatcher = apollo.watch(query: attendeesForConferenceQuery) { [weak self] result, error in
       guard let conference = result?.data?.conference else { return }
-      self.attendees = conference.attendees?.map { $0.fragments.attendeeDetails }
+      self?.attendees = conference.attendees?.map { $0.fragments.attendeeDetails }
     }
   }
 }
 
 // MARK: - IBActions
 extension ConferenceDetailViewController {
-
   @IBAction func attendingButtonPressed() {
+    if isCurrentUserAttending {
+      let notAttendingConferenceMutation =
+        NotAttendConferenceMutation(conferenceId: conference.id,
+                                    attendeeId: currentUserID!)
+      apollo.perform(mutation: notAttendingConferenceMutation, resultHandler: nil)
+    } else {
+      let attendingConferenceMutation =
+        AttendConferenceMutation(conferenceId: conference.id,
+                                 attendeeId: currentUserID!)
+      apollo.perform(mutation: attendingConferenceMutation, resultHandler: nil)
+    }
   }
 }
 

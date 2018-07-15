@@ -22,3 +22,26 @@ fragment AttendeeDetails on Attendee {
     count
   }
 }
+
+
+mutation AttendConference($conferenceId: ID!, $attendeeId: ID!) {
+  addToAttendees(conferencesConferenceId: $conferenceId, attendeesAttendeeId: $attendeeId) {
+    conferencesConference {
+      id
+      attendees {
+        ...AttendeeDetails
+      }
+    }
+  }
+}
+
+mutation NotAttendConference($conferenceId: ID!, $attendeeId: ID!) {
+  removeFromAttendees(conferencesConferenceId: $conferenceId, attendeesAttendeeId: $attendeeId) {
+    conferencesConference {
+      id
+      attendees {
+        ...AttendeeDetails
+      }
+    }
+  }
+}

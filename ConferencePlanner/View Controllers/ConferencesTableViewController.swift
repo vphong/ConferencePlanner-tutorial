@@ -38,7 +38,8 @@ class ConferencesTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
+  var allConferencesWatcher: GraphQLQueryWatcher<AllConferencesQuery>?
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,9 +53,9 @@ class ConferencesTableViewController: UITableViewController {
     
     // create query and display results
     let allConferencesQuery = AllConferencesQuery()
-    apollo.fetch(query: allConferencesQuery) { [weak self] result, error in
+    allConferencesWatcher = apollo.watch(query: allConferencesQuery) { result, error in
       guard let conferences = result?.data?.allConferences else { return }
-      self?.conferences = conferences.map { $0.fragments.conferenceDetails }
+      self.conferences = conferences.map { $0.fragments.conferenceDetails }
     }
   }
 
